@@ -26,8 +26,11 @@ flatpak update
 ## Limitations
 
 - For security reasons, this Flatpak is sandboxed and only has access to the
-  user's Home folder. You should place any files you need within DOSBox in
+  user's Home folder. You should place any files you need within DOSBox-X in
   that folder (or in a subfolder).
+- Likewise there is no way to access system installed MIDI soundfonts under /usr
+  if you want to use such soundfonts, copy them into your home directory and
+  specify the location in your DOSBox-X config file.
 - There is no support for NE2000 network adapter emulation due to flatpak security reasons as it requires low-level (root) access.
 
 Please [create an issue](https://github.com/flathub/com.dosbox_x.DOSBox-X/issues/new)
@@ -35,8 +38,8 @@ if you find any other limitations specific to flatpak that should be documented 
 
 ## Configuration files
 
-Under the default Flatpak configuration, the DOSBox configuration files are
-located in `~/.var/app/com.dosbox_x.DOSBox-X/.dosbox-x/`. To access it with a
+Under the default Flatpak configuration, the DOSBox-X configuration files are
+located in `~/.var/app/com.dosbox_x.DOSBox-X/config/dosbox-x/`. To access it with a
 graphical file manager, you'll have to make hidden folders visible.
 
 ## Building from source

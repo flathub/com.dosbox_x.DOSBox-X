@@ -52,7 +52,7 @@ then enter the following commands in a terminal:
 git clone --recursive https://github.com/flathub/com.dosbox_x.DOSBox-X.git
 cd com.dosbox_x.DOSBox-X
 flatpak install flathub org.freedesktop.Sdk//20.08 -y
-flatpak-builder --force-clean --install --user -y builddir com.dosbox_x.DOSBox-X.json
+flatpak-builder --force-clean --install --user -y builddir com.dosbox_x.DOSBox-X.yaml
 ```
 
 If all goes well, the Flatpak will be installed after building. You can then

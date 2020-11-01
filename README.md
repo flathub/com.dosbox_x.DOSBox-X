@@ -1,5 +1,7 @@
 # Flatpak for DOSBox-X
 
+Official Flatpak support is available for [DOSBox-X](https://dosbox-x.com/), a cross-platform x86/DOS emulation package.
+
 ## Installation
 
 This Flatpak is available on
@@ -31,7 +33,7 @@ flatpak update
 - Likewise there is no way to access system installed MIDI soundfonts under /usr
   if you want to use such soundfonts, copy them into your home directory and
   specify the location in your DOSBox-X config file.
-- There is no support for NE2000 network adapter emulation due to flatpak security reasons as it requires low-level (root) access.
+- There is no support for NE2000 network adapter emulation due to Flatpak security reasons as it requires low-level (root) access.
 
 Please [create an issue](https://github.com/flathub/com.dosbox_x.DOSBox-X/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.

@@ -43,7 +43,8 @@ located in `~/.var/app/com.dosbox_x.DOSBox-X/config/dosbox-x/`. To access it wit
 graphical file manager, you'll have to make hidden folders visible.
 
 The config file will not initially exist after installing DOSBox-X, or upgrading to
-a new version. You can create one from the DOSBox-X command line by running ``config -wcd -all``.
+a new version. You can create one from the DOSBox-X command line by running ``config -wcd``.
+To write all config options, type ``config -wcd -all``.
 
 ## Building from source
 

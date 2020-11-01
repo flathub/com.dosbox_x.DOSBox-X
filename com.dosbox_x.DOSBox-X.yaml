@@ -32,6 +32,7 @@ modules:
 
 # Build DOSBox-X SDL2
   - name: dosbox-x
+    buildsystem: autotools
     config-opts:
       - --enable-core-inline
       - --enable-debug=heavy

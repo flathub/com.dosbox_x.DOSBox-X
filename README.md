@@ -42,6 +42,9 @@ Under the default Flatpak configuration, the DOSBox-X configuration files are
 located in `~/.var/app/com.dosbox_x.DOSBox-X/config/dosbox-x/`. To access it with a
 graphical file manager, you'll have to make hidden folders visible.
 
+The config file will not initially exist after installing DOSBox-X, or upgrading to
+a new version. You can create one from the DOSBox-X command line by running ``config -wcd -all``.
+
 ## Building from source
 
 Install Git, follow the

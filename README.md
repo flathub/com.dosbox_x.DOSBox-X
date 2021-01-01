@@ -35,6 +35,7 @@ flatpak update
   specify the location in your DOSBox-X config file.
 - There is no support for NE2000 network adapter emulation due to Flatpak security reasons as it requires low-level (root) access.
 - On Wayland, DOSBox-X will run via XWayland. This is due to SDL2 not supporting client-side-decorations (see https://bugzilla.libsdl.org/show_bug.cgi?id=5194). This will be a limitation until a new SDL2 version is released with these patches, and this new SDL2 version is available in flatpak.
+- There is no support for 3dfx Glide pass-through (Hardware 3dfx Voodoo emulation does work, but is very slow). This is being blocked by issue: [Glide SDL2 segfault](https://github.com/joncampbell123/dosbox-x/issues/2126[Glide SDL2 segfault). Once that is resolved, we can try to see if [OpenGlide](https://github.com/voyageur/openglide) will work in a Flatpak environment.
 
 Please [create an issue](https://github.com/flathub/com.dosbox_x.DOSBox-X/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.

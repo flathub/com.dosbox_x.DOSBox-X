@@ -36,6 +36,10 @@ flatpak update
 - There is no support for NE2000 network adapter emulation due to Flatpak security reasons as it requires low-level (root) access.
 - On Wayland, DOSBox-X will run via XWayland. This is due to SDL2 not supporting client-side-decorations (see https://bugzilla.libsdl.org/show_bug.cgi?id=5194). This will be a limitation until a new SDL2 version is released with these patches, and this new SDL2 version is available in flatpak.
 - There is no support for 3dfx Glide pass-through (Hardware 3dfx Voodoo emulation does work, but is very slow). This is being blocked by issue: [Glide SDL2 segfault](https://github.com/joncampbell123/dosbox-x/issues/2126). Once that is resolved, we can try to see if [OpenGlide](https://github.com/voyageur/openglide) will work in a Flatpak environment.
+- The SDL2 build used is provided by flatpak, this build only supports PulseAudio and dummy sound options, and likewise only supports X11, Wayland and dummy video options.
+  - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-X will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
+    - ``flatpak override --env=SDL_AUDIODRIVER=dummy com.dosbox_x.DOSBox-X``
+  - You will need a working X or XWayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. 
 
 Please [create an issue](https://github.com/flathub/com.dosbox_x.DOSBox-X/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.

@@ -52,6 +52,10 @@ modules:
       - type: archive
         url: https://github.com/joncampbell123/dosbox-x/archive/dosbox-x-v0.83.12.tar.gz
         sha256: 31e2e9943a0e4d888402ed6289c7b0d60df049bedf62e4518c9bc0ca903f8b19
+      - type: patch
+        path: fix-temp-filenames.patch
+      - type: patch
+        path: update-description.patch
     post-install:
       - install -Dm644 /app/share/icons/hicolor/scalable/apps/dosbox-x.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop

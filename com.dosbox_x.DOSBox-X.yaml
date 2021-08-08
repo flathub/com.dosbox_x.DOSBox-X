@@ -63,9 +63,6 @@ modules:
       - --enable-debug=heavy
       - --enable-sdl2
     sources:
-      #- type: archive
-      #  url: https://github.com/joncampbell123/dosbox-x/archive/refs/tags/dosbox-x-v0.83.16.tar.gz
-      #  sha256: 327bb9be5f239407a0fe5ff501ce19d5056ac8b2ce2438fe60a9914952f08076
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
         tag: "dosbox-x-v0.83.16"

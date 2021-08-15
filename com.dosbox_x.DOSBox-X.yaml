@@ -13,6 +13,7 @@ finish-args:         # flatpak permissions
   - --socket=x11     # default to X11, as Gnome does not provide SSD
   - --socket=pulseaudio
   - --filesystem=home
+  - --filesystem=host:ro
 
 cleanup:
   - '/include'

@@ -38,7 +38,7 @@ flatpak update
   If you want to use such soundfonts, copy them into your home directory and
   specify the location in your DOSBox-X config file.
 - There is support for NE2000 network adapter emulation using the libslirp backend. The libpcap backend is not supported due to Flatpak sandbox security restrictions, as it requires low-level device access.
-- On Wayland, DOSBox-X will run via XWayland. This is due to SDL2 not supporting client-side-decorations (see https://bugzilla.libsdl.org/show_bug.cgi?id=5194). This will be a limitation until a new SDL2 version is released with these patches, and this new SDL2 version is available in flatpak.
+- On Wayland, DOSBox-X will run via XWayland. This is due to because there are unresolved issues with running in fullscreen mode. See [Issue 1959](https://github.com/joncampbell123/dosbox-x/issues/1959)
 - There is no support for 3dfx Glide pass-through (Hardware 3dfx Voodoo emulation does work, but is very slow). This is being blocked by issue: [Glide SDL2 segfault](https://github.com/joncampbell123/dosbox-x/issues/2126).
 - The SDL2 libraries against which DOSBox-X is built are provided by flatpak. This build only supports PulseAudio and dummy sound options, and likewise only supports X11, Wayland and dummy video options.
   - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-X will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:

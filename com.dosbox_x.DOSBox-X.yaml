@@ -28,10 +28,10 @@ modules:
   # Build Mesa GLU
   - "shared-modules/glu/glu-9.json"
 
-  # Build FluidSynth
+  # Build FluidSynth for General MIDI emulation
   - "shared-modules/linux-audio/fluidsynth2.json"
 
-  # Build libslirp for networking
+  # Build libslirp for TCP/IP networking
   - name: libslirp
     buildsystem: meson
     cleanup:

@@ -34,11 +34,11 @@ flatpak update
   as some (like ``/usr``) have special restrictions. For instance, to allow access
    to ``/run/media`` where USB devices are typically mounted, run the following command:
     - ``flatpak override --filesystem=/run/media com.dosbox_x.DOSBox-X``
-- Likewise there is no way to access system installed MIDI soundfonts under ``/usr``.
+- Likewise, there is no way to access system installed MIDI soundfonts under ``/usr``.
   If you want to use such soundfonts, copy them into your home directory and
   specify the location in your DOSBox-X config file.
 - There is support for NE2000 network adapter emulation using the libslirp backend. The libpcap backend is not supported due to Flatpak sandbox security restrictions, as it requires low-level device access.
-- On Wayland, DOSBox-X will by default run via XWayland. This is because there are unresolved issues with running in fullscreen mode. See [Issue 1959](https://github.com/joncampbell123/dosbox-x/issues/1959)
+- On Wayland, DOSBox-X will by default run via XWayland. This is because there are some issues with running in fullscreen mode which should be fixed in the next SDL2 release.
 - There is no support for 3dfx Glide pass-through (Hardware 3dfx Voodoo emulation does work, but is very slow). This is being blocked by issue: [Glide SDL2 segfault](https://github.com/joncampbell123/dosbox-x/issues/2126).
 - The SDL2 libraries against which DOSBox-X is built are provided by flatpak. This build only supports PulseAudio and dummy sound options, and likewise only supports X11, Wayland and dummy video options.
   - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-X will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
@@ -68,11 +68,11 @@ then enter the following commands in a terminal:
 git clone --recursive https://github.com/flathub/com.dosbox_x.DOSBox-X.git
 cd com.dosbox_x.DOSBox-X
 flatpak install flathub org.freedesktop.Sdk//21.08 -y
-flatpak-builder --force-clean --install --user -y builddir com.dosbox_x.DOSBox-X.yaml
+flatpak-builder --force-clean --install --user -y build-dir com.dosbox_x.DOSBox-X.yaml
 ```
 
 If all goes well, the Flatpak will be installed after building. You can then
 run it using your desktop environment's application launcher.
 
 You can speed up incremental builds by installing [ccache](https://ccache.dev/)
-and specifying `--ccache` in the flatpak-builder command line (before `builddir`).
+and specifying `--ccache` in the flatpak-builder command line (before `build-dir`).

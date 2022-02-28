@@ -42,10 +42,10 @@ modules:
         url: https://gitlab.freedesktop.org/slirp/libslirp
         tag: "v4.6.1"
     x-checker-data:
-          type: anitya
-          project-id: 96796
-          stable-only: true
-          tag-template: v$version
+      type: anitya
+      project-id: 96796
+      stable-only: true
+      tag-template: v$version
 
   # Build DOSBox-X SDL2
   - name: dosbox-x
@@ -59,10 +59,10 @@ modules:
         url: https://github.com/joncampbell123/dosbox-x
         tag: "dosbox-x-v0.83.22"
     x-checker-data:
-          type: anitya
-          project-id: 242383
-          stable-only: true
-          tag-template: dosbox-x-v$version
+      type: anitya
+      project-id: 242383
+      stable-only: true
+      tag-template: dosbox-x-v$version
     post-install:
       - install -Dm644 /app/share/icons/hicolor/scalable/apps/dosbox-x.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop

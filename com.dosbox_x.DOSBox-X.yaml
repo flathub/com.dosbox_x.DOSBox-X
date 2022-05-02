@@ -58,6 +58,8 @@ modules:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
         tag: "dosbox-x-v0.83.25"
+      - type: patch
+        path: 3447.diff
     x-checker-data:
       type: anitya
       project-id: 242383

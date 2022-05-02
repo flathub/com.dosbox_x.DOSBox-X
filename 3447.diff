@@ -1,0 +1,251 @@
+diff --git a/build-scripts/mingw/make-mingw-hx-dos.sh b/build-scripts/mingw/make-mingw-hx-dos.sh
+index eae5b701aa..d2c73ad500 100755
+--- a/build-scripts/mingw/make-mingw-hx-dos.sh
++++ b/build-scripts/mingw/make-mingw-hx-dos.sh
+@@ -41,9 +41,10 @@ fi
+ top=`pwd`
+ cd "$top" || exit 1
+ 
+-ziptool="$top/dosbox-x-mingw-hx-dos/vs2015/tool/zip.exe"
++hxdosdir="dosbox-x-mingw-hx-dos"
++ziptool="$top/$hxdosdir/vs/tool/zip.exe"
+ 
+-cd "$top/dosbox-x-mingw-hx-dos" || exit 1
++cd "$top/$hxdosdir" || exit 1
+ git clean -dfx
+ git reset --hard
+ git checkout master
+@@ -71,10 +72,10 @@ cp $hxdir/README.TXT . || exit 1
+ cp $hxdir/WINSPOOL.DRV . || exit 1
+ cp $hxdir/*.DLL . || exit 1
+ 
+-cd "$top"/dosbox-x-mingw-hx-dos || exit 1
++cd "$top/$hxdosdir" || exit 1
+ echo "Packing up now..."
+ 
+-$ziptool -r -9 ../"$name" {CHANGELOG.txt,dosbox-x.exe,dosbox-x.ref,DPMILD32.EXE,HDPMI32.EXE,HXGUIHLP.INI,README.TXT,*.DLL} || exit 1
++$ziptool -r -9 ../"$name" {CHANGELOG.txt,dosbox-x.exe,dosbox-x.ref,dosbox-x.ref.full,DPMILD32.EXE,HDPMI32.EXE,HXGUIHLP.INI,README.TXT,WINSPOOL.DRV,*.DLL} || exit 1
+ cd ..
+ 
+ exit 0
+diff --git a/build-scripts/mingw/make-mingw.sh b/build-scripts/mingw/make-mingw.sh
+index acb643dd2f..0b38a34212 100644
+--- a/build-scripts/mingw/make-mingw.sh
++++ b/build-scripts/mingw/make-mingw.sh
+@@ -33,7 +33,7 @@ build="$top/mingw-build"
+ rm -Rf "$build"
+ mkdir -p "$build" || exit 1
+ 
+-ziptool="$top/dosbox-x-mingw/vs2015/tool/zip.exe"
++ziptool="$top/dosbox-x-mingw/vs/tool/zip.exe"
+ 
+ # do it
+ for what in mingw mingw-lowend mingw-sdl2 mingw-sdldraw; do
+diff --git a/contrib/linux/com.dosbox_x.DOSBox-X.metainfo.xml.in b/contrib/linux/com.dosbox_x.DOSBox-X.metainfo.xml.in
+index c3ac60ced6..9a71c242e8 100644
+--- a/contrib/linux/com.dosbox_x.DOSBox-X.metainfo.xml.in
++++ b/contrib/linux/com.dosbox_x.DOSBox-X.metainfo.xml.in
+@@ -10,7 +10,7 @@
+     <category>Emulation</category>
+   </categories>
+   <releases>
+-          <release version="@PACKAGE_VERSION@" date="2022-4-30"/>
++          <release version="@PACKAGE_VERSION@" date="2022-5-1"/>
+   </releases>
+   <screenshots>
+ 	  <screenshot type="default">
+diff --git a/contrib/windows/installer/dosbox-x.reference.setup.conf b/contrib/windows/installer/dosbox-x.reference.setup.conf
+index 4e4e87e319..36450db338 100644
+--- a/contrib/windows/installer/dosbox-x.reference.setup.conf
++++ b/contrib/windows/installer/dosbox-x.reference.setup.conf
+@@ -706,8 +706,9 @@ pc-98 anex86 font                        =
+ #      fontxdbcs24: FONTX2 file used to rendering SBCS characters (24x24) in DOS/V mode (with V-text and 24-pixel fonts enabled).
+ #                     For Simplified Chinese DOS/V, loading the HZK24? font file (https://github.com/aguegu/BitmapFont/tree/master/font) is also supported.
+ #                     For Traditional Chinese DOS/V, loading the STDFONT.24 font file from the ETen Chinese DOS system is also supported.
+-#   showdbcsnodosv: Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in non-DOS/V, non-PC98, and non-TTF mode.
+-#                     Setting to "auto" enables rendering of Chinese/Japanese/Korean characters if a language file is loaded in such cases.
++#   showdbcsnodosv: Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in standard VGA and EGA machine types in non-DOS/V and non-TTF mode.
++#                     DOS/V fonts will be used in such cases, which can be adjusted by the above config options (such as fontxdbcs, fontxdbcs14, and fontxdbcs24).
++#                     Setting to "auto" enables Chinese/Japanese/Korean character rendering if a language file is loaded (or with "autodbcs" option set) in such cases.
+ #                     Possible values: true, false, 1, 0, auto.
+ #              yen: Enables the Japanese yen symbol at 5ch if it is found at 7fh in a custom SBCS font for the Japanese DOS/V or JEGA emulation.
+ #DOSBOX-X-ADV:#              del: Maps the undefined del symbol (0x7F) to the next character (0x80) for the Japanese DOS/V and other Japanese mode emulations.
+diff --git a/dosbox-x.reference.conf b/dosbox-x.reference.conf
+index 52cd55cb57..ef84273172 100644
+--- a/dosbox-x.reference.conf
++++ b/dosbox-x.reference.conf
+@@ -339,8 +339,9 @@ pc-98 anex86 font               =
+ #      fontxdbcs24: FONTX2 file used to rendering SBCS characters (24x24) in DOS/V mode (with V-text and 24-pixel fonts enabled).
+ #                     For Simplified Chinese DOS/V, loading the HZK24? font file (https://github.com/aguegu/BitmapFont/tree/master/font) is also supported.
+ #                     For Traditional Chinese DOS/V, loading the STDFONT.24 font file from the ETen Chinese DOS system is also supported.
+-#   showdbcsnodosv: Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in non-DOS/V, non-PC98, and non-TTF mode.
+-#                     Setting to "auto" enables rendering of Chinese/Japanese/Korean characters if a language file is loaded in such cases.
++#   showdbcsnodosv: Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in standard VGA and EGA machine types in non-DOS/V and non-TTF mode.
++#                     DOS/V fonts will be used in such cases, which can be adjusted by the above config options (such as fontxdbcs, fontxdbcs14, and fontxdbcs24).
++#                     Setting to "auto" enables Chinese/Japanese/Korean character rendering if a language file is loaded (or with "autodbcs" option set) in such cases.
+ #                     Possible values: true, false, 1, 0, auto.
+ #              yen: Enables the Japanese yen symbol at 5ch if it is found at 7fh in a custom SBCS font for the Japanese DOS/V or JEGA emulation.
+ #       fepcontrol: FEP control API for the DOS/V emulation.
+diff --git a/dosbox-x.reference.full.conf b/dosbox-x.reference.full.conf
+index 24a0fc91ef..2adb707340 100644
+--- a/dosbox-x.reference.full.conf
++++ b/dosbox-x.reference.full.conf
+@@ -686,8 +686,9 @@ pc-98 show graphics layer on initialize  = true
+ #      fontxdbcs24: FONTX2 file used to rendering SBCS characters (24x24) in DOS/V mode (with V-text and 24-pixel fonts enabled).
+ #                     For Simplified Chinese DOS/V, loading the HZK24? font file (https://github.com/aguegu/BitmapFont/tree/master/font) is also supported.
+ #                     For Traditional Chinese DOS/V, loading the STDFONT.24 font file from the ETen Chinese DOS system is also supported.
+-#   showdbcsnodosv: Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in non-DOS/V, non-PC98, and non-TTF mode.
+-#                     Setting to "auto" enables rendering of Chinese/Japanese/Korean characters if a language file is loaded in such cases.
++#   showdbcsnodosv: Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in standard VGA and EGA machine types in non-DOS/V and non-TTF mode.
++#                     DOS/V fonts will be used in such cases, which can be adjusted by the above config options (such as fontxdbcs, fontxdbcs14, and fontxdbcs24).
++#                     Setting to "auto" enables Chinese/Japanese/Korean character rendering if a language file is loaded (or with "autodbcs" option set) in such cases.
+ #                     Possible values: true, false, 1, 0, auto.
+ #              yen: Enables the Japanese yen symbol at 5ch if it is found at 7fh in a custom SBCS font for the Japanese DOS/V or JEGA emulation.
+ #              del: Maps the undefined del symbol (0x7F) to the next character (0x80) for the Japanese DOS/V and other Japanese mode emulations.
+diff --git a/include/build_timestamp.h b/include/build_timestamp.h
+index f2e99de65e..aa28e0f96b 100644
+--- a/include/build_timestamp.h
++++ b/include/build_timestamp.h
+@@ -1,4 +1,4 @@
+ /*auto-generated*/
+-#define UPDATED_STR "Apr 30, 2022 11:14:43pm"
+-#define GIT_COMMIT_HASH "d89f04e"
++#define UPDATED_STR "May 1, 2022 5:40:57pm"
++#define GIT_COMMIT_HASH "65d8ff4"
+ #define COPYRIGHT_END_YEAR "2022"
+diff --git a/src/dos/drives.cpp b/src/dos/drives.cpp
+index a79c26bbe2..e2dc49e9b2 100644
+--- a/src/dos/drives.cpp
++++ b/src/dos/drives.cpp
+@@ -359,8 +359,8 @@ void DriveManager::ChangeDisk(int drive, DOS_Drive* disk) {
+     if (cdrom) IDE_CDROM_Detach_Ret(index,slave,drive);
+     strcpy(disk->curdir,driveInfo.disks[driveInfo.currentDisk]->curdir);
+     disk->Activate();
+-    disk->UpdateDPB(currentDrive);
+-    if (cdrom && dos_kernel_disabled) cdrom->loadImage();
++    if (!dos_kernel_disabled) disk->UpdateDPB(currentDrive);
++    else if (cdrom) cdrom->loadImage();
+     driveInfo.disks[driveInfo.currentDisk] = disk;
+     fatDrive *old = dynamic_cast<fatDrive*>(Drives[drive]);
+     Drives[drive] = disk;
+@@ -465,7 +465,7 @@ void DriveManager::CycleDisks(int drive, bool notify, int position) {
+ 		// copy working directory, acquire system resources and finally switch to next drive		
+ 		strcpy(newDisk->curdir, oldDisk->curdir);
+ 		newDisk->Activate();
+-        newDisk->UpdateDPB(currentDrive);
++        if (!dos_kernel_disabled) newDisk->UpdateDPB(currentDrive);
+ 		Drives[drive] = newDisk;
+ 		if (notify) LOG_MSG("Drive %c: disk %d of %d now active", 'A'+drive, currentDisk+1, numDisks);
+ 	}
+@@ -490,7 +490,7 @@ void DriveManager::CycleAllCDs(void) {
+ 			// copy working directory, acquire system resources and finally switch to next drive		
+ 			strcpy(newDisk->curdir, oldDisk->curdir);
+ 			newDisk->Activate();
+-            newDisk->UpdateDPB(currentDrive);
++            if (!dos_kernel_disabled) newDisk->UpdateDPB(currentDrive);
+             Drives[idrive] = newDisk;
+ 			LOG_MSG("Drive %c: disk %d of %d now active", 'A'+idrive, currentDisk+1, numDisks);
+ 		}
+diff --git a/src/dosbox.cpp b/src/dosbox.cpp
+index bb81a225a8..2d0122136a 100644
+--- a/src/dosbox.cpp
++++ b/src/dosbox.cpp
+@@ -2185,8 +2185,9 @@ void DOSBOX_SetupConfigSections(void) {
+ 
+ 	Pstring = secprop->Add_string("showdbcsnodosv",Property::Changeable::WhenIdle,"auto");
+     Pstring->Set_values(truefalseautoopt);
+-	Pstring->Set_help("Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in non-DOS/V, non-PC98, and non-TTF mode.\n"
+-                      "Setting to \"auto\" enables rendering of Chinese/Japanese/Korean characters if a language file is loaded in such cases.");
++	Pstring->Set_help("Enables rendering of Chinese/Japanese/Korean characters for DBCS code pages in standard VGA and EGA machine types in non-DOS/V and non-TTF mode.\n"
++                      "DOS/V fonts will be used in such cases, which can be adjusted by the above config options (such as fontxdbcs, fontxdbcs14, and fontxdbcs24).\n"
++                      "Setting to \"auto\" enables Chinese/Japanese/Korean character rendering if a language file is loaded (or with \"autodbcs\" option set) in such cases.");
+     Pstring->SetBasic(true);
+ 
+ 	Pbool = secprop->Add_bool("yen",Property::Changeable::OnlyAtStart,false);
+diff --git a/src/hardware/hardware.cpp b/src/hardware/hardware.cpp
+index 0b45488c17..19bdb8fa5b 100644
+--- a/src/hardware/hardware.cpp
++++ b/src/hardware/hardware.cpp
+@@ -1517,7 +1517,7 @@ void CAPTURE_ScreenShotEvent(bool pressed) {
+ 	CaptureState |= CAPTURE_IMAGE;
+ #endif
+ #if defined(USE_TTF)
+-    showdbcs = true;
++    showdbcs = IS_EGAVGA_ARCH;
+     ttf_switch_off();
+ #endif
+ }
+diff --git a/src/ints/bios_disk.cpp b/src/ints/bios_disk.cpp
+index d93361ccdc..c6ddcc63c4 100644
+--- a/src/ints/bios_disk.cpp
++++ b/src/ints/bios_disk.cpp
+@@ -201,7 +201,7 @@ bool getSwapRequest(void) {
+ }
+ 
+ void swapInDrive(int drive, int position=0) {
+-    if (!dos_kernel_disabled) DriveManager::CycleDisks(drive, true, position);
++    DriveManager::CycleDisks(drive, true, position);
+     /* Hack/feature: rescan all disks as well */
+     LOG_MSG("Diskcaching reset for drive %c.", drive+'A');
+     if (Drives[drive] != NULL) {
+@@ -219,7 +219,7 @@ void swapInDrive(int drive, int position=0) {
+ void swapInNextDisk(bool pressed) {
+     if (!pressed)
+         return;
+-    if (!dos_kernel_disabled) DriveManager::CycleAllDisks();
++    DriveManager::CycleAllDisks();
+     /* Hack/feature: rescan all disks as well */
+     LOG_MSG("Diskcaching reset for floppy drives.");
+     for(Bitu i=0;i<2;i++) { /* Swap A: and B: where DOSBox mainline would run through ALL drive letters */
+@@ -238,7 +238,7 @@ void swapInNextDisk(bool pressed) {
+ void swapInNextCD(bool pressed) {
+     if (!pressed)
+         return;
+-    if (!dos_kernel_disabled) DriveManager::CycleAllCDs();
++    DriveManager::CycleAllCDs();
+     /* Hack/feature: rescan all disks as well */
+     LOG_MSG("Diskcaching reset for normal mounted drives.");
+     for(Bitu i=2;i<DOS_DRIVES;i++) { /* Swap C: D: .... Z: if it is a CD/DVD drive */
+diff --git a/src/misc/messages.cpp b/src/misc/messages.cpp
+index c394d7a79b..d224ddfc58 100644
+--- a/src/misc/messages.cpp
++++ b/src/misc/messages.cpp
+@@ -428,4 +428,5 @@ void MSG_Init() {
+ #else
+     showdbcs = showdbcsstr=="true"||showdbcsstr=="1"||(showdbcsstr=="auto" && loadlang);
+ #endif
++    if (!IS_EGAVGA_ARCH) showdbcs = false;
+ }
+diff --git a/src/misc/programs.cpp b/src/misc/programs.cpp
+index fc1510c7c4..292ff730c4 100644
+--- a/src/misc/programs.cpp
++++ b/src/misc/programs.cpp
+@@ -1110,6 +1110,7 @@ void ApplySetting(std::string pvar, std::string inputline, bool quiet) {
+ #else
+                     showdbcs = showdbcsstr=="true"||showdbcsstr=="1"||(showdbcsstr=="auto" && loadlang);
+ #endif
++                    if (!IS_EGAVGA_ARCH) showdbcs = false;
+                 } else if (!strcasecmp(inputline.substr(0, 11).c_str(), "fepcontrol=")||!strcasecmp(inputline.substr(0, 7).c_str(), "vtext1=")||!strcasecmp(inputline.substr(0, 7).c_str(), "vtext2="))
+                     DOSV_SetConfig(section);
+             } else if (!strcasecmp(pvar.c_str(), "render")) {
+diff --git a/src/output/output_ttf.cpp b/src/output/output_ttf.cpp
+index 502be910b7..2f2dfa510e 100644
+--- a/src/output/output_ttf.cpp
++++ b/src/output/output_ttf.cpp
+@@ -1362,6 +1362,7 @@ void ttf_switch_on(bool ss=true) {
+         SetVal("sdl", "output", "ttf");
+         std::string showdbcsstr = static_cast<Section_prop *>(control->GetSection("dosv"))->Get_string("showdbcsnodosv");
+         showdbcs = showdbcsstr=="true"||showdbcsstr=="1"||(showdbcsstr=="auto" && (loadlang || dbcs_sbcs));
++        if (!IS_EGAVGA_ARCH) showdbcs = false;
+         void OutputSettingMenuUpdate(void);
+         OutputSettingMenuUpdate();
+         if (ss) ttfswitch = false;
+@@ -1416,7 +1417,7 @@ void ttf_switch_off(bool ss=true) {
+ #endif
+         }
+         KEYBOARD_Clear();
+-        showdbcs = true;
++        showdbcs = IS_EGAVGA_ARCH;
+         change_output(out);
+         SetVal("sdl", "output", output);
+         void OutputSettingMenuUpdate(void);

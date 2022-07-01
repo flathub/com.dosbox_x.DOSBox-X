@@ -57,7 +57,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
-        tag: "dosbox-x-v0.84.0"
+        tag: "dosbox-x-v0.84.1"
     x-checker-data:
       type: anitya
       project-id: 242383

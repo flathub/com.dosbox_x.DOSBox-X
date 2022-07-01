@@ -60,7 +60,7 @@ modules:
         tag: "dosbox-x-v0.84.1"
       - type: file
         path: dosbox-x.svg
-        dest-filename: contrib/icons/dosbox-x.svg
+        dest: contrib/icons/
     x-checker-data:
       type: anitya
       project-id: 242383

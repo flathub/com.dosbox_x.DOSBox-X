@@ -49,6 +49,7 @@ modules:
 
   # Build DOSBox-X SDL2
   - name: dosbox-x
+    version: 2022.09.0
     buildsystem: autotools
     config-opts:
       - --enable-core-inline
@@ -57,7 +58,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
-        tag: "dosbox-x-windows-v2022.08.0"
+        tag: "dosbox-x-v0.84.3"
     x-checker-data:
       type: anitya
       project-id: 242383

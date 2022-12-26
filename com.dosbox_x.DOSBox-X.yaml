@@ -1,7 +1,7 @@
 ---
 app-id: com.dosbox_x.DOSBox-X
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 
 command: dosbox-x
@@ -55,6 +55,7 @@ modules:
       - --enable-core-inline
       - --enable-debug=heavy
       - --enable-sdl2
+      - --disable-avcodec
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x

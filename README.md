@@ -44,6 +44,7 @@ flatpak update
   - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-X will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
     - ``flatpak override --env=SDL_AUDIODRIVER=dummy com.dosbox_x.DOSBox-X``
   - You will need a working X or XWayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. 
+- Due to overzealous flatpak linter rules, the DOS debugger option had to be disabled.
 
 Please [create an issue](https://github.com/flathub/com.dosbox_x.DOSBox-X/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.

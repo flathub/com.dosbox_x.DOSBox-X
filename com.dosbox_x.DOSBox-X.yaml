@@ -1,7 +1,7 @@
 ---
 app-id: com.dosbox_x.DOSBox-X
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 
 command: dosbox-x
@@ -49,16 +49,14 @@ modules:
 
   # Build DOSBox-X SDL2
   - name: dosbox-x
-    version: 2022.09.0
     buildsystem: autotools
     config-opts:
       - --enable-core-inline
-      - --enable-debug=heavy
       - --enable-sdl2
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
-        tag: "dosbox-x-v0.84.3"
+        tag: "dosbox-x-v2022.12.26"
     x-checker-data:
       type: anitya
       project-id: 242383

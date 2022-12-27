@@ -38,12 +38,13 @@ flatpak update
   If you want to use such soundfonts, copy them into your home directory and
   specify the location in your DOSBox-X config file.
 - There is support for NE2000 network adapter emulation using the libslirp backend. The libpcap backend is not supported due to Flatpak sandbox security restrictions, as it requires low-level device access.
-- On Wayland, DOSBox-X will by default run via XWayland. This is because there are some issues with running in fullscreen mode which should be fixed in the next SDL2 release.
+- On Wayland, DOSBox-X will by default run via XWayland. This is because there are some issues with running in fullscreen mode which should be fixed in a future SDL2 or DOSBox-X release.
 - There is no support for 3dfx Glide pass-through (Hardware 3dfx Voodoo emulation does work, but is very slow). This is being blocked by issue: [Glide SDL2 segfault](https://github.com/joncampbell123/dosbox-x/issues/2126).
 - The SDL2 libraries against which DOSBox-X is built are provided by flatpak. This build only supports PulseAudio and dummy sound options, and likewise only supports X11, Wayland and dummy video options.
   - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-X will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
     - ``flatpak override --env=SDL_AUDIODRIVER=dummy com.dosbox_x.DOSBox-X``
   - You will need a working X or XWayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. 
+- Due to overzealous flatpak linter rules, the DOS debugger option had to be disabled.
 
 Please [create an issue](https://github.com/flathub/com.dosbox_x.DOSBox-X/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.
@@ -67,7 +68,7 @@ then enter the following commands in a terminal:
 ```bash
 git clone --recursive https://github.com/flathub/com.dosbox_x.DOSBox-X.git
 cd com.dosbox_x.DOSBox-X
-flatpak install flathub org.freedesktop.Sdk//21.08 -y
+flatpak install flathub org.freedesktop.Sdk//22.08 -y
 flatpak-builder --force-clean --install --user -y build-dir com.dosbox_x.DOSBox-X.yaml
 ```
 

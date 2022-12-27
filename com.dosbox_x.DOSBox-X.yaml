@@ -52,7 +52,6 @@ modules:
     buildsystem: autotools
     config-opts:
       - --enable-core-inline
-      - --enable-debug=heavy
       - --enable-sdl2
     sources:
       - type: git

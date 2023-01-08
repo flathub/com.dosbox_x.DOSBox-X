@@ -51,8 +51,8 @@ modules:
   - name: dosbox-x
     buildsystem: autotools
     config-opts:
-      - --enable-core-inline
       - --enable-sdl2
+      - --enable-debug=heavy # workaround linter =off
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x

@@ -56,7 +56,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
-        tag: "dosbox-x-v2023.03.31"
+        tag: "dosbox-x-v2023.05.01"
     x-checker-data:
       type: anitya
       project-id: 242383

@@ -1,7 +1,7 @@
 ---
 app-id: com.dosbox_x.DOSBox-X
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 
 command: dosbox-x

@@ -44,7 +44,6 @@
 	  </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
-  <translation/>
   <developer_name>DOSBox-X team</developer_name>
   <update_contact>noreply@dosbox-x.com</update_contact>
   <description>
@@ -64,9 +63,4 @@ DOSBox-X emulates a legacy IBM PC and DOS environment, and has many emulation op
 	  <control>pointing</control>
 	  <control>gamepad</control>
   </recommends>
-  <mimetypes>
-	  <mimetype>application/x-cd-image</mimetype>
-	  <mimetype>application/x-cue</mimetype>
-	  <mimetype>application/x-raw-disk-image</mimetype>
-  </mimetypes>
 </component>

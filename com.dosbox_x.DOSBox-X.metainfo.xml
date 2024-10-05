@@ -11,6 +11,7 @@
     <category>Game</category>
   </categories>
   <releases>
+          <release version="2024.10.01" date="2024-10-1"/>
           <release version="2024.03.01" date="2024-3-1"/>
   </releases>
   <screenshots>

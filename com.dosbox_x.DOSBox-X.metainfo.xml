@@ -9,6 +9,7 @@
   <launchable type="desktop-id">com.dosbox_x.DOSBox-X.desktop</launchable>
   <categories>
     <category>Game</category>
+    <category>Emulator</category>
   </categories>
   <releases>
           <release version="2025.01.01" date="2025-1-1"/>

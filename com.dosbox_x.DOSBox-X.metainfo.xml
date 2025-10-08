@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2011-2024 Jonathan Campbell -->
+<!-- Copyright 2011-2025 Jonathan Campbell -->
 <component type="desktop">
   <id>com.dosbox_x.DOSBox-X</id>
   <project_license>GPL-2.0</project_license>
@@ -7,11 +7,15 @@
   <name>DOSBox-X</name>
   <summary>x86/DOS emulator with sound and graphics</summary>
   <launchable type="desktop-id">com.dosbox_x.DOSBox-X.desktop</launchable>
+  <developer id="com.dosbox-x">
+	  <name>DOSBox-X team</name>
+  </developer>
   <categories>
     <category>Game</category>
     <category>Emulator</category>
   </categories>
   <releases>
+          <release version="2025.10.07" date="2025-10-7"/>
           <release version="2025.05.03" date="2025-5-3"/>
           <release version="2025.01.01" date="2025-1-1"/>
           <release version="2024.12.04" date="2024-12-4"/>
@@ -49,7 +53,6 @@
 	  </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
-  <developer_name>DOSBox-X team</developer_name>
   <update_contact>noreply@dosbox-x.com</update_contact>
   <description>
 <p> DOSBox-X is an open-source DOS emulator for running DOS games and applications.
@@ -58,7 +61,8 @@ Compared to DOSBox, DOSBox-X is much more flexible and provides more features.
 </p>
 <p>DOSBox-X emulates a PC necessary for running many DOS games and applications that simply cannot be run on modern PCs and operating systems, similar to DOSBox. However, while the main focus of DOSBox is for running DOS games, DOSBox-X goes much further than this. Started as a fork of the DOSBox project, it retains compatibility with the wide base of DOS games and DOS gaming DOSBox was designed for. But it is also a platform for running DOS applications, including emulating the environments to run Windows 3.x, 9x and ME and software written for those versions of Windows. By adding official support for Windows 95, 98, and ME emulation and acceleration, we hope that those old Windows games and applications could be enjoyed or used once more. Moreover, DOSBox-X adds support for emulating the NEC PC-98 such that you can also play PC-98 games with it.
 </p>
-DOSBox-X emulates a legacy IBM PC and DOS environment, and has many emulation options which you can find documented on the DOSBox-X website.
+<p>DOSBox-X emulates a legacy IBM PC and DOS environment, and has many emulation options which you can find documented on the DOSBox-X website.
+</p>
   </description>
   <url type="homepage">https://dosbox-x.com</url>
   <url type="bugtracker">https://github.com/joncampbell123/dosbox-x/issues</url>

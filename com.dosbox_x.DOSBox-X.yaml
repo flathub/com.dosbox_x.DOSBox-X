@@ -9,8 +9,8 @@ command: dosbox-x
 finish-args:         # flatpak permissions
   - --device=all     # needed for OpenGL, gamepads and serial/parallel
   - --share=ipc      # needed for X11
-  - --share=network  # Needed for IPX and serial over TCP/IP
-  - --socket=x11     # default to X11, as Gnome does not provide SSD
+  - --share=network  # Needed for NE2000, IPX and serial over TCP/IP
+  - --socket=x11     # default to X11 due to fullscreen issues
   - --socket=pulseaudio
   - --filesystem=home
 
@@ -54,14 +54,17 @@ modules:
   - name: dosbox-x
     buildsystem: autotools
     config-opts:
-      - --enable-core-inline
       - --enable-sdl2
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
-        tag: "dosbox-x-v2025.10.07"
+        tag: "dosbox-x-v2025.12.01"
       - type: file
         path: com.dosbox_x.DOSBox-X.metainfo.xml
+      - type: shell
+        commands:
+          # hack for flathub linter not liking the word 'debug' being used in a config option.
+          - sed -i '/dnl FEATURE: DEBUG/a\AC_DEFINE(C_DEBUG,1)\nAC_DEFINE(C_HEAVY_DEBUG,1)\nLIBS="$LIBS -l$curses_lib"' configure.ac
     x-checker-data:
       type: anitya
       project-id: 242383

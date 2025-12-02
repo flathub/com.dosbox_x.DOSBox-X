@@ -61,10 +61,6 @@ modules:
         tag: "dosbox-x-v2025.12.01"
       - type: file
         path: com.dosbox_x.DOSBox-X.metainfo.xml
-      - type: shell
-        commands:
-          # hack for flathub linter not liking the word 'debug' being used in a config option.
-          - sed -i '/dnl FEATURE: DEBUG/a\AC_DEFINE(C_DEBUG,1)\nAC_DEFINE(C_HEAVY_DEBUG,1)\nLIBS="$LIBS -l$curses_lib"' configure.ac
     x-checker-data:
       type: anitya
       project-id: 242383

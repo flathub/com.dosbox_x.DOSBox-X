@@ -1,7 +1,7 @@
 ---
 app-id: com.dosbox_x.DOSBox-X
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 
 command: dosbox-x
@@ -43,7 +43,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/slirp/libslirp
-        tag: "v4.9.3"
+        tag: "v4.9.4"
+        commit: d09dc9a70360ee7838acccbd234ab83f3b9b37a5
     x-checker-data:
       type: anitya
       project-id: 96796
@@ -58,7 +59,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/joncampbell123/dosbox-x
-        tag: "dosbox-x-v2026.08.02"
+        tag: "dosbox-x-v2026.08.31"
+        commit: 4f19017c5f565dc40d01fede0f1382892e7243d7
       - type: file
         path: com.dosbox_x.DOSBox-X.metainfo.xml
     x-checker-data:

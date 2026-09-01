@@ -15,6 +15,7 @@
     <category>Emulator</category>
   </categories>
   <releases>
+          <release version="2026.08.31" date="2026-08-31"/>
           <release version="2026.08.02" date="2026-08-02"/>
           <release version="2026.07.02" date="2026-07-02"/>
           <release version="2026.06.02" date="2026-06-02"/>

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# prevent pop-up dialogue about /app/bin not existing
+
+cd "$HOME" || exit 1
+exec /app/bin/dosbox-x -nopromptfolder "$@"

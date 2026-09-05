@@ -4,7 +4,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 
-command: dosbox-x
+command: dosbox-x-flatpak
 
 finish-args:         # flatpak permissions
   - --device=all     # needed for OpenGL, gamepads and serial/parallel
@@ -63,6 +63,8 @@ modules:
         commit: 4f19017c5f565dc40d01fede0f1382892e7243d7
       - type: file
         path: com.dosbox_x.DOSBox-X.metainfo.xml
+      - type: file
+        path: dosbox-x-flatpak
     x-checker-data:
       type: anitya
       project-id: 242383
@@ -72,4 +74,5 @@ modules:
       - install -Dm644 /app/share/icons/hicolor/scalable/apps/dosbox-x.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 com.dosbox_x.DOSBox-X.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm755 dosbox-x-flatpak /app/bin/dosbox-x-flatpak
 ...

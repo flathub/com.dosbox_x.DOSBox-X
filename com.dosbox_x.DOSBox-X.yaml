@@ -51,6 +51,17 @@ modules:
       stable-only: true
       tag-template: v$version
 
+  # Build SDL2_net for IPX support
+  - name: SDL2_net
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DSDL2NET_SAMPLES=OFF
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_net/releases/download/release-2.4.0/SDL2_net-2.4.0.tar.gz
+        sha256: 9cbca2527feb3f1a622d48ba65cc7dee9b1e3f2c55ceafb7d7720bb058aafb30
+
   # Build DOSBox-X SDL2
   - name: dosbox-x
     buildsystem: autotools
